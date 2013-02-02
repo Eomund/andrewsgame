@@ -1,0 +1,12 @@
+read from command line
+create new game
+
+while game not over
+	setup turn
+	generate orders
+	execute shoots
+	do damage and clear dead
+	execute moves
+	
+declare winners
+	

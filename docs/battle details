@@ -1,0 +1,5 @@
+percent hit = (accuracy / (accuracy + evasion)
+
+damage done = 1 + bonus [(damage x hp)% chance of bonus]
+
+
