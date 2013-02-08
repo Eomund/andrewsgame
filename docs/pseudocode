@@ -10,3 +10,10 @@ while game not over
 	
 declare winners
 	
+
+
+
+create new game:
+	read map from file (png)
+	add units
+	

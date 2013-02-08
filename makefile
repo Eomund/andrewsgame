@@ -5,12 +5,12 @@ CFLAGS = -std=c++11 -I$(IDIR)
 ODIR = obj
 LDIR = lib
 SDIR = src
-LIBS = 
+LIBS = -lpng
 
-_DEPS = gameTypes.h
+_DEPS = 
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = start.o gameTypes.o Game.o
+_OBJ = start.o helper.o Game.o Unit.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 

@@ -1,0 +1,2 @@
+;name, mark, blocks line of sight,	blocks movement
+land,#,false,false

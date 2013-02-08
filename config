@@ -1,5 +1,4 @@
-# this is a comment
+; this is a comment
 
-map = bob 
+map = maps/bob 
 
-type = capture # with a comment

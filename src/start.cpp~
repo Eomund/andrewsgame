@@ -1,14 +1,15 @@
-#include <iostream>
+#include "Game.h"
 #include <fstream>
-#include <boost/algorithm/string.hpp>
-#include "gameTypes.h"
 using namespace std;
-using namespace boost::algorithm;
 
 
 string defaultMap = "maps/default.agm";
 int defaultType = 0;
-vector<gameType> gameTypes;
+string terrainFile = "terrs";
+
+vector<GameType> gameTypes;
+vector<Terrain> terrs;
+
 
 int getGameTypeNumber(string name){
 	for(unsigned int i = 0; i < gameTypes.size(); i++){
@@ -38,6 +39,10 @@ void processConfig(string line){
 		
 	}
 	
+	if(name == "TERRAINFILE"){
+		terrainFile = rule;
+	}
+	
 }
 
 int main(int argc, char* argv[]){
@@ -49,7 +54,8 @@ int main(int argc, char* argv[]){
 			exit(0);
 		}
 	}
-	setupTypes();
+	loadGameTypes();
+	loadTerrains(terrainFile);
 	if(gameTypes.size() == 0){
 		cout << "Error: no game types loaded" << endl;
 		exit(0);
@@ -65,12 +71,8 @@ int main(int argc, char* argv[]){
       getline (conf,line);
       
       //Remove comments
-      int pos = line.find('#');
-      if(pos >= 0){
-      	  line = line.substr(0, pos);
-      }
+      removeComment(line);
       
-      trim(line);
       //we don't need to process it if it is just a comment or blank line
       if(line != ""){
       	  processConfig(line);
@@ -94,10 +96,18 @@ int main(int argc, char* argv[]){
 			}
 		}
 		
+		if(strcmp(argv[i], "-m") == 0){
+			if(i <= argc - 1){
+				cout << "Error: no map file given" << endl;
+				exit(0);
+			}else{
+				map = argv[i + 1];
+			}
+		}
+		
 	}
 	
-	//Game game (type, map);
-	cout << type << endl;
+	Game game (&gameTypes[type], map);
 }
 
 

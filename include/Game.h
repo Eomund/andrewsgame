@@ -1,12 +1,27 @@
-#include "gameTypes.h"                                                     
+#include "helper.h"        
+#include "Unit.h"
 
+
+struct Square{
+	int terr;
+	int unit;
+
+};
+	
 class Game{
 
 public:
-	Game(gameType* t, string n);
+	Game(GameType*, string, string);
 	
 	~Game();
 private:
-	gameType* type;
-	string name;
+	GameType* type;
+	vector< vector<int> > map;
+	vector<Unit> units;
+	int width;
+	int height;
+	vector<Terrain> terrs;
+	void loadTerrains(string);
+	void loadMap(string);
+	
 };
